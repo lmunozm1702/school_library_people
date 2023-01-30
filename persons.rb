@@ -1,11 +1,14 @@
+require 'securerandom'
 class Person
   # creating accessors
-  attr_accessor :name, :age, :id
+  attr_accessor :name, :age
+  attr_reader :id
 
   def initialize(name, age = 'unknown', parent_permission: true)
     @name = name
     @age = age
     @parent_permission = parent_permission
+    @id = SecureRandom.uuid
   end
 
   def of_age?
@@ -25,3 +28,4 @@ end
 
 a = Person.new('Benja')
 pp a
+pp a.id
