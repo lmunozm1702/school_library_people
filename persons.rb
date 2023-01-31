@@ -33,10 +33,3 @@ class Person < Nameable
     false
   end
 end
-
-person = Person.new('maximilianus', 22)
-pp person.correct_name
-capitalizedPerson = CapitalizeDecorator.new(person)
-pp capitalizedPerson.correct_name
-capitalizedTrimmedPerson = TrimmerDecorator.new(capitalizedPerson)
-pp capitalizedTrimmedPerson.correct_name
