@@ -4,7 +4,7 @@ require './capitalize_decorator'
 require './trimmer_decorator'
 class Person < Nameable
   # creating accessors
-  attr_accessor :name, :age
+  attr_accessor :name, :age, :rentals
   attr_reader :id
 
   def initialize(name, age = 'unknown', parent_permission: true)
@@ -13,6 +13,7 @@ class Person < Nameable
     @age = age
     @parent_permission = parent_permission
     @id = SecureRandom.uuid
+    @rentals = []
   end
 
   def correct_name
@@ -31,5 +32,10 @@ class Person < Nameable
     return true if is_of_age? || @parent_permission
 
     false
+  end
+
+  def add_rental
+    @rentals.push(rental)
+    rental.person = self
   end
 end
