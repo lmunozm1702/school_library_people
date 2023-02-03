@@ -3,7 +3,7 @@ require './app'
 
 class Menu
   def initialize
-    @app = App.new
+    @app = App.new(self)
     @options = [
       { id: 1, option: 'list_all_books', menu_item: 'List all books' },
       { id: 2, option: 'list_all_persons', menu_item: 'List all persons' },
@@ -13,7 +13,6 @@ class Menu
       { id: 6, option: 'rentals_to_person', menu_item: 'List all rentals for a given person id' },
       { id: 7, option: 'exit_app', menu_item: 'Exit' }
     ]
-    show_options
   end
 
   def show_options
@@ -32,6 +31,7 @@ class Menu
       unavailable_option
       return
     end
+    $stdout.clear_screen
     @app.send(selected[:option])
   end
 
@@ -41,6 +41,17 @@ class Menu
     $stdin.getch
     show_options
   end
+
+  def main
+    show_options
+  end
+
+  def comeback
+    puts "\n** Please preass any key to go back to main menu... **"
+    $stdin.getch
+    main
+  end
 end
 
-Menu.new
+main_menu = Menu.new
+main_menu.main

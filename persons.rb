@@ -4,10 +4,10 @@ require './capitalize_decorator'
 require './trimmer_decorator'
 class Person < Nameable
   # creating accessors
-  attr_accessor :name, :age, :rentals
+  attr_accessor :name, :age, :parent_permission, :rentals
   attr_reader :id
 
-  def initialize(name, age = 'unknown', parent_permission: true)
+  def initialize(name = 'Unknown', age = 0, parent_permission = 'y')
     super()
     @name = name
     @age = age
@@ -29,7 +29,7 @@ class Person < Nameable
   private :of_age?
 
   def can_use_services?
-    return true if is_of_age? || @parent_permission
+    return true if is_of_age? || @parent_permission == 'y'
 
     false
   end
