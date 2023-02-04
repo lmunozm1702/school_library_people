@@ -3,6 +3,7 @@ require './books'
 require './students'
 require './teachers'
 require './rental'
+require 'pry'
 
 class App
   def initialize(main_menu)
@@ -113,6 +114,7 @@ class App
     puts "\nRentals for #{@persons[person_selected].correct_name}"
     @rentals.map do |rental|
       puts "#{rental.date} - Book: #{rental.book.title} by #{rental.book.author}" if person_selected == person_id
+      binding.pry
     end
     @main_menu.comeback
   end
