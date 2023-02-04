@@ -112,7 +112,7 @@ class App
     person_id = @persons[person_selected].id
     puts "\nRentals for #{@persons[person_selected].correct_name}"
     @rentals.map do |rental|
-      puts "#{rental.date} - Book: #{rental.book.title} by #{rental.book.author}" if rental.person.id == person_id
+      puts "#{rental.date} - Book: #{rental.book.title} by #{rental.book.author}" if person_selected == person_id
     end
     @main_menu.comeback
   end
